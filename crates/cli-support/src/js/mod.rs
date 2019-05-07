@@ -396,8 +396,10 @@ impl<'a> Context<'a> {
             | OutputMode::Node {
                 experimental_modules: true,
             } => {
-                self.imports
-                    .push_str(&format!("import * as wasm from './{}_bg';\n", module_name));
+                self.imports.push_str(&format!(
+                    "import * as wasm from './{}_bg.wasm';\n",
+                    module_name
+                ));
                 if needs_manual_start {
                     self.footer.push_str("wasm.__wbindgen_start();\n");
                 }
